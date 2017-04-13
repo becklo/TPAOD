@@ -25,7 +25,7 @@ int indexMin(int n, int** tab){
 }
 
 //Function reading the file and returning a table filled with the integers and their prob
-int** tabInt(long n, char* inpFile){
+int** fTabInt(long n, char* inpFile){
   FILE* fileInt = NULL;
   int intR;
   int scan;
@@ -86,10 +86,12 @@ COUPLE* tabSort(long n, char* inpFile){
   COUPLE *tabSort = NULL;
   int iMin = 0;
   int i = 0;
-  int** tabInt = tabInt(n,inpFile);
+  int** tabInt = NULL;
+
+  tabInt = fTabInt(n,inpFile);
 
   for(i=0;i<n;i++){
-    printf("tab1 = %d et tab2 = %d\n",testInt[i][0],testInt[i][1]);
+    printf("tab1 = %d et tab2 = %d\n",tabInt[i][0],tabInt[i][1]);
   }
 
   tabSort = calloc(NBEL,sizeof(COUPLE));
@@ -116,16 +118,11 @@ int main(int argc, char const *argv[]) {
   int** testInt = NULL;
   COUPLE *testSort = NULL;
 
-  testInt = tabInt(n,"test.txt");
-
-
-  printf("NBEL %d\n", NBEL);
-
-  testSort = tabSort(n,testInt);
+  testSort = tabSort(n,"test.txt");
   for(i=0; i<NBEL; i++){
     printf("el %d prob %lf\n", testSort[i].el,testSort[i].prob);
   }
-
+  printf("NBEL %d\n", NBEL);
 
   return 0;
 }
