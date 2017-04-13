@@ -1,12 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <errno.h>
-#include <assert.h>
-#include <string.h>
-#include <stdbool.h>
+#include "fileReader.h"
 
 
+//Swap the values of two integers
 void swap(int a, int b){
   int c;
   c=a;
@@ -47,7 +42,7 @@ int** tabInt(long n){
     return EXIT_FAILURE;
   }
 
-  while(scan = fscanf(fileInt, "%d",&intR)!=EOF && scan != 0){
+  while((scan = fscanf(fileInt, "%d",&intR))!=EOF && scan != 0){
     //printf("intR = %d\n", intR);
     for(i=0; i<n; i++){
       if(intR == tabInt[i][0]){
@@ -64,27 +59,20 @@ int** tabInt(long n){
     }
   }
 
+  NBEL = j;
+
   /*for(i=0;i<n;i++){
     printf("tab1 = %d et tab2 = %d\n",tabInt[i][0],tabInt[i][1]);
   }*/
 
+  fclose(fileInt);
   return tabInt;
 }
 
-/*int** tabSort(long n, int** tabInt){
-  int i = 0;
-
-  for(i=0; i<n; i++){
-    while(/*tabInt[i][0] != -1 && tabInt[i+1][0] != -1){
-      if(tabInt[i][0] > tabInt[i+1][0]){
-        swap(tabInt[i][0],tabInt[i+1][0]);
-        swap(tabInt[i][1],tabInt[i+1][1]);
-      }
-    }
-  }
-
-  return tabInt;
-}*/
+//Sort the tab given in entry
+COUPLE* tabSort(long n, int** tabInt){
+  return NULL;
+}
 
 
 
@@ -93,15 +81,11 @@ int main(int argc, char const *argv[]) {
   long n = 5;
   int i =0;
   int** oui = NULL;
-  //int** oui2 = NULL;
 
   oui = tabInt(n);
   for(i=0;i<n;i++){
     printf("tab1 = %d et tab2 = %d\n",oui[i][0],oui[i][1]);
   }
-  /*oui2 = tabSort(n,oui);
-  for(i=0;i<n;i++){
-    printf("tab1 = %d et tab2 = %d\n",oui2[i][0],oui2[i][1]);
-  }*/
+
   return 0;
 }
