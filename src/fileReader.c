@@ -9,8 +9,23 @@ void swap(int a, int b){
   b=c;
 }
 
+//Calculates the minimum of a table 2D
+int indexMin(int n, int** tab){
+  int i =0;
+  int mini = tab[0][0];
+  int index=0;
+
+  for(i=1; i<n; i++){
+    if(tab[i][0]< mini){
+      mini = tab[i][0];
+      index = i;
+    }
+  }
+  return index;
+}
+
 //Function reading the file and returning a table filled with the integers and their prob
-int** tabInt(long n){
+int** fTabInt(long n, char* inpFile){
   FILE* fileInt = NULL;
   int intR;
   int scan;
@@ -20,14 +35,12 @@ int** tabInt(long n){
   bool pass = false;
   n = (int) n;
 
-  printf("(OK)\n");
   tabInt = calloc(n,sizeof(int*));
   for (i=0; i<n; i++){
     tabInt[i] = malloc(2*sizeof(int));
   }
   if(tabInt == NULL){
-    printf("Table has not been created");
-    return EXIT_FAILURE;
+    perror("Table has not been created");
   }
   i = 0;
   for (i=0; i<n ; i++){
@@ -35,15 +48,12 @@ int** tabInt(long n){
     tabInt[i][1] = 0;
   }
 
-
-  fileInt = fopen("test.txt","r");
+  fileInt = fopen(inpFile,"r");
   if(fileInt == NULL){
-    printf("File not opened");
-    return EXIT_FAILURE;
+    perror("File not opened");
   }
 
   while((scan = fscanf(fileInt, "%d",&intR))!=EOF && scan != 0){
-    //printf("intR = %d\n", intR);
     for(i=0; i<n; i++){
       if(intR == tabInt[i][0]){
         tabInt[i][1]++;
@@ -58,34 +68,45 @@ int** tabInt(long n){
       pass = false;
     }
   }
-
   NBEL = j;
-
-  /*for(i=0;i<n;i++){
-    printf("tab1 = %d et tab2 = %d\n",tabInt[i][0],tabInt[i][1]);
-  }*/
-
   fclose(fileInt);
   return tabInt;
 }
 
 //Sort the tab given in entry
-COUPLE* tabSort(long n, int** tabInt){
-  return NULL;
+COUPLE* tabSort(long n, char* inpFile){
+  COUPLE *tabSort = NULL;
+  int iMin = 0;
+  int i = 0;
+  int** tabInt = NULL;
+
+  tabInt = fTabInt(n,inpFile);
+
+  tabSort = calloc(NBEL,sizeof(COUPLE));
+  if(tabSort == NULL){
+    perror("Table has not been created");
+  }
+
+  for(i=0; i<NBEL;i++){
+    iMin = indexMin(NBEL, tabInt);
+    tabSort[i].el = tabInt[iMin][0];
+    tabSort[i].prob = ((double)(tabInt[iMin][1]))/((double)n);
+    tabInt[iMin][0] = INFINITE;
+  }
+
+  return tabSort;
 }
 
 
 
 int main(int argc, char const *argv[]) {
   /* code */
-  long n = 5;
+  long n = 10;
   int i =0;
-  int** oui = NULL;
+  int** testInt = NULL;
+  COUPLE *testSort = NULL;
 
-  oui = tabInt(n);
-  for(i=0;i<n;i++){
-    printf("tab1 = %d et tab2 = %d\n",oui[i][0],oui[i][1]);
-  }
+  testSort = tabSort(n,"test.txt");
 
   return 0;
 }
