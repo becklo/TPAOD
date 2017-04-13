@@ -20,7 +20,7 @@ typedef struct {
 int** tabInt(long n,char* inpFile);
 int indexMin(int n, int** tab);
 void swap(int a, int b);
-COUPLE* tabSort(long n, int** tabInt);
+COUPLE* tabSort(long n, char* inpFile);
 
 
 #endif

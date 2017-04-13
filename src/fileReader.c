@@ -82,10 +82,15 @@ int** tabInt(long n, char* inpFile){
 }
 
 //Sort the tab given in entry
-COUPLE* tabSort(long n, int** tabInt){
+COUPLE* tabSort(long n, char* inpFile){
   COUPLE *tabSort = NULL;
   int iMin = 0;
   int i = 0;
+  int** tabInt = tabInt(n,inpFile);
+
+  for(i=0;i<n;i++){
+    printf("tab1 = %d et tab2 = %d\n",testInt[i][0],testInt[i][1]);
+  }
 
   tabSort = calloc(NBEL,sizeof(COUPLE));
   if(tabSort == NULL){
@@ -112,9 +117,7 @@ int main(int argc, char const *argv[]) {
   COUPLE *testSort = NULL;
 
   testInt = tabInt(n,"test.txt");
-  for(i=0;i<n;i++){
-    printf("tab1 = %d et tab2 = %d\n",testInt[i][0],testInt[i][1]);
-  }
+
 
   printf("NBEL %d\n", NBEL);
 
