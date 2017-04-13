@@ -4,7 +4,7 @@
  *  \author    Jean-Louis Roch
  *  \version   1.0
  *  \date      30/9/2016
- *  \warning   Usage: compileBST n originalFile 
+ *  \warning   Usage: compileBST n originalFile
  *  \copyright GNU Public License.
  */
 
@@ -14,6 +14,8 @@
 #include <errno.h>
 #include <assert.h>
 #include <string.h>
+#include "fileReader.h"
+#include "BST.h"
 
 
 
@@ -27,19 +29,19 @@
  */
 int main (int argc, char *argv[]) {
   long n = 0 ; // Number of elements in the dictionary
-  FILE *freqFile = NULL ; // File that contains n positive integers defining the relative frequence of dictinary elements 
-  
+  FILE *freqFile = NULL ; // File that contains n positive integers defining the relative frequence of dictinary elements
+
   if(argc != 3){
     fprintf(stderr, "!!!!! Usage: ./compileBST n  originalFile !!!!!\n");
       exit(EXIT_FAILURE); /* indicate failure.*/
   }
 
-  { // Conversion of parameter n in a long 
+  { // Conversion of parameter n in a long
     int codeRetour = EXIT_SUCCESS;
     char *posError;
     long resuLong;
     n = atol(argv[1] ) ;
-   
+
     assert(argc >= 2);
     // Conversion of argv[1] en long
     resuLong = strtol(argv[1], &posError, 10);
@@ -51,21 +53,21 @@ int main (int argc, char *argv[]) {
          if (resuLong > 0)
          {
             n = (long)resuLong;
-            fprintf(stderr, "Number of elements in the dictionary: %ld\n", n);         
+            fprintf(stderr, "Number of elements in the dictionary: %ld\n", n);
          }
          else
          {
-            (void)fprintf(stderr, "%s cannot be converted into a positive integer matching the number of elements in the dicionary.\n", argv[1]) ; 
+            (void)fprintf(stderr, "%s cannot be converted into a positive integer matching the number of elements in the dicionary.\n", argv[1]) ;
             codeRetour = EXIT_FAILURE;
          }
       break;
-      
+
       case EINVAL :
          perror(__func__);
          (void)fprintf(stderr, "%s does not match a long integer value. \n", argv[1]);
          codeRetour = EXIT_FAILURE;
       break;
-      
+
       case ERANGE :
          perror(__func__);
          (void)fprintf(stderr, "%s does not fit in a long int :\n" "out of bound [%ld;%ld]\n",
@@ -82,7 +84,7 @@ int main (int argc, char *argv[]) {
   freqFile = fopen(argv[2] , "r" );
   if (freqFile==NULL) {fprintf (stderr, "!!!!! Error opening originalFile !!!!!\n"); exit(EXIT_FAILURE);}
 
-  // TO BE COMPLETED 
+  // TO BE COMPLETED
   fclose(freqFile);
 
 
