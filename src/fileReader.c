@@ -49,8 +49,8 @@ int** tabInt(long n, char* inpFile){
     tabInt[i][1] = 0;
   }
 
-
-  fileInt = fopen("test.txt","r");
+  printf("%s",inpFile);
+  fileInt = fopen(inpFile,"r");
   if(fileInt == NULL){
     perror("File not opened");
   }
@@ -111,7 +111,7 @@ int main(int argc, char const *argv[]) {
   int** testInt = NULL;
   COUPLE *testSort = NULL;
 
-  testInt = tabInt(n);
+  testInt = tabInt(n,"test.txt");
   for(i=0;i<n;i++){
     printf("tab1 = %d et tab2 = %d\n",testInt[i][0],testInt[i][1]);
   }
