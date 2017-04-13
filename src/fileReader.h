@@ -1,5 +1,6 @@
 #ifndef fileReader_h
 #define fileReader_h
+#define INFINITE 9999999;
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +10,7 @@
 #include <string.h>
 #include <stdbool.h>
 
-int NBEL;
+int NBEL = 0;
 
 typedef struct {
   int el;
@@ -17,8 +18,9 @@ typedef struct {
 } COUPLE;
 
 int** tabInt(long n);
+int indexMin(int n, int** tab);
 void swap(int a, int b);
-//COUPLE* tabSort(long n, int** tabInt);
+COUPLE* tabSort(long n, int** tabInt);
 
 
 #endif
