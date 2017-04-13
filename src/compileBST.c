@@ -15,6 +15,11 @@
 #include <assert.h>
 #include <string.h>
 #include "fileReader.h"
+<<<<<<< HEAD
+=======
+#include "BST.h"
+
+>>>>>>> 0986be595cdfc57ed113f210ebc8b0ae1d480962
 
 
 /**
@@ -27,7 +32,11 @@
  */
 int main (int argc, char *argv[]) {
   long n = 0 ; // Number of elements in the dictionary
+<<<<<<< HEAD
   //FILE *freqFile = NULL ; // File that contains n positive integers defining the relative frequence of dictinary elements
+=======
+  FILE *freqFile = NULL ; // File that contains n positive integers defining the relative frequence of dictinary elements
+>>>>>>> 0986be595cdfc57ed113f210ebc8b0ae1d480962
 
   if(argc != 3){
     fprintf(stderr, "!!!!! Usage: ./compileBST n  originalFile !!!!!\n");
