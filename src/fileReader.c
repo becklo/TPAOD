@@ -1,7 +1,19 @@
+/*! \file fileReader.c
+ *  \brief	   This implements the creation of reading of the benchmark
+ *  \author    Quentin Rühl
+ *  \version   1.0
+ *  \date      12/04/2016
+ *  \copyright GNU Public License.
+ */
 #include "fileReader.h"
 
 
-//Swap the values of two integers
+/**
+ * swap
+ * \brief swap the values of the 2 integers given in entry
+ * \param a integer
+ * \param b integer
+ */
 void swap(int a, int b){
   int c;
   c=a;
@@ -9,7 +21,13 @@ void swap(int a, int b){
   b=c;
 }
 
-//Calculates the minimum of a table 2D
+/**
+ * indexMin
+ * \brief finds the minimum in a table
+ * \param n the size of the table
+ * \param tab 2D table
+ * \returns the index of the minimum
+ */
 int indexMin(int n, int** tab){
   int i =0;
   int mini = tab[0][0];
@@ -24,8 +42,14 @@ int indexMin(int n, int** tab){
   return index;
 }
 
-//Function reading the file and returning a table filled with the integers and their prob
-int** fTabInt(long n, char* inpFile){
+/**
+ * fTabInt
+ * \brief reads the input File and stores the values and number of apparition in a 2D table
+ * \param n number of values in the
+ * \param inpFile string containing the path and name of the file to reads
+ * \returns a 2D table
+ */
+static int** fTabInt(long n, char* inpFile){
   FILE* fileInt = NULL;
   int intR;
   int scan;
@@ -73,7 +97,13 @@ int** fTabInt(long n, char* inpFile){
   return tabInt;
 }
 
-//Sort the tab given in entry
+/**
+ * tabSort
+ * \brief sorts the table returned by fTabInt and Calculates the probabilities to have each element
+ * \param n number of values in the
+ * \param inpFile string containing the path and name of the file to reads
+ * \returns a COUPLE table sorted by values
+ */
 COUPLE* tabSort(long n, char* inpFile){
   COUPLE *tabSort = NULL;
   int iMin = 0;
@@ -99,14 +129,19 @@ COUPLE* tabSort(long n, char* inpFile){
 
 
 
-int main(int argc, char const *argv[]) {
-  /* code */
+/*int main(int argc, char const *argv[]) {
   long n = 10;
   int i =0;
   int** testInt = NULL;
   COUPLE *testSort = NULL;
+  double timeExec;
+  clock_t tStart, tEnd;
 
+  tStart = clock();
   testSort = tabSort(n,"test.txt");
+  tEnd = clock();
+  timeExec = (double) (tEnd - tStart)/CLOCKS_PER_SEC;
+  printf("temps exec %lf\n", timeExec);
 
   return 0;
-}
+}*/

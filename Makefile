@@ -17,7 +17,7 @@ PDF=$(LATEXSOURCE:.tex=.pdf)
 all: binary report doc 
 
 
-$(BINDIR)/compileBST: $(CSOURCE)
+$(BINDIR)/computeABROpt: $(CSOURCE)
 	$(CC) $(CFLAGS)  $^ -o $@
 
 %.pdf: $(LATEXSOURCE)
@@ -26,7 +26,7 @@ $(BINDIR)/compileBST: $(CSOURCE)
 $(DOCDIR)/index.html: $(SRCDIR)/Doxyfile $(CSOURCE) 
 	$(DOCC) $(SRCDIR)/Doxyfile
 
-binary: $(BINDIR)/compileBST
+binary: $(BINDIR)/computeABROpt
 
 report: $(PDF) 
 

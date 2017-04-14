@@ -14,12 +14,12 @@
 #include <errno.h>
 #include <assert.h>
 #include <string.h>
+#include <time.h>
 #include "fileReader.h"
-<<<<<<< HEAD
-=======
+#include "fileReader.c"
 #include "BST.h"
+#include "BST.c"
 
->>>>>>> 0986be595cdfc57ed113f210ebc8b0ae1d480962
 
 
 /**
@@ -32,11 +32,7 @@
  */
 int main (int argc, char *argv[]) {
   long n = 0 ; // Number of elements in the dictionary
-<<<<<<< HEAD
-  //FILE *freqFile = NULL ; // File that contains n positive integers defining the relative frequence of dictinary elements
-=======
   FILE *freqFile = NULL ; // File that contains n positive integers defining the relative frequence of dictinary elements
->>>>>>> 0986be595cdfc57ed113f210ebc8b0ae1d480962
 
   if(argc != 3){
     fprintf(stderr, "!!!!! Usage: ./compileBST n  originalFile !!!!!\n");
@@ -88,17 +84,20 @@ int main (int argc, char *argv[]) {
     if  (codeRetour != EXIT_SUCCESS) return codeRetour ;
   }
 
-  /*freqFile = fopen(argv[2] , "r" );
+  freqFile = fopen(argv[2] , "r" );
   if (freqFile==NULL) {fprintf (stderr, "!!!!! Error opening originalFile !!!!!\n"); exit(EXIT_FAILURE);}
 
   // TO BE COMPLETED
-  fclose(freqFile);*/
+  fclose(freqFile);
 
   COUPLE* tabFreq = NULL;
   int i = 0;
+  double timeExec;
+  clock_t tStart, tEnd;
+
   tabFreq = tabSort(n, argv[2]);
   for(i=0;i<NBEL;i++){
-    printf("el %d prob %lf", tabFreq[i].el, tabFreq[i].prob);
+    printf("el %d prob %lf\n", tabFreq[i].el, tabFreq[i].prob);
   }
 
 

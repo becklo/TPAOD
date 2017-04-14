@@ -17,7 +17,7 @@ typedef struct {
   double prob;
 } COUPLE;
 
-int** fTabInt(long n,char* inpFile);
+static int** fTabInt(long n,char* inpFile);
 int indexMin(int n, int** tab);
 void swap(int a, int b);
 COUPLE* tabSort(long n, char* inpFile);
