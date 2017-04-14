@@ -17,8 +17,8 @@
 
 \title{Rapport de TP 4MMAOD : Génération d'ABR optimal}
 \author{
-NOM Prénom étudiant$_1$ (groupe étudiant$_1$) 
-\\ NOM Prénom étudiant$_2$ (groupe étudiant$_2$) 
+BECK Loula (groupe 1) 
+\\ RÜHL Quentin (groupe 1) 
 }
 
 \begin{document}
@@ -35,9 +35,11 @@ NOM Prénom étudiant$_1$ (groupe étudiant$_1$)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Principe de notre  programme (1 point)}
-{\em Mettre ici une explication brève du principe de votre programme en  précisant la méthode implantée (récursive, itérative) et les
-choix effectués (notamment pour l'ordonnancement des instructions).
-} 
+ Tout d'abord, il s'agira pour notre programme de lire les benchmark différents. Pour ce faire, nous avons implémenté le fichier {fileReader.c}.
+ Dans ce fichier, on ouvrira le fichier demandé puis grâce à la fonction C fscanf() on lira les entiers présents. On les placera 
+ dans un tableau bidimensionnel avec le nombre d'occurence qui leur correspond. Toutes les valeurs d'entier sont initialisées à -1 dans le tableau, les occurences, à 0.
+ On créée ensuite une structure COUPLE qui se compose la valeur d'un élément {\em el} et de sa probabilité {\em prob}.
+ On crée un tableau de COUPLE trié en fonction de la valeur des éléments. Ce tableau pourra être utilisé pour la suite pour la construction de l'arbre.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Analyse du coût théorique (2 points)}
@@ -66,17 +68,19 @@ choix effectués (notamment pour l'ordonnancement des instructions).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Compte rendu d'expérimentation (2 points)}
   \subsection{Conditions expérimentaless}
-     {\em Décrire les conditions permettant la reproductibilité des mesures: on demande la description
-      de la machine et la méthode utilisée pour mesurer le temps.
-     }
-
     \subsubsection{Description synthétique de la machine\,:} 
-      {\em indiquer ici le  processeur et sa fréquence, la mémoire, le système d'exploitation. 
-       Préciser aussi si la machine était monopolisée pour un test, ou notamment si 
-       d'autres processus ou utilisateurs étaient en cours d'exécution. 
-      } 
+      Les caractéristiques de la machine utilisée pour les tests sont :
+      \begin{itemize}
+       \item Processeur Intel Core i3
+       \item Fréquence 2GHz
+       \item Mémoire 4Gb
+       \item OS Ubuntu 16.04 LTS
+      \end{itemize}
+      Le seul processus user qui tourne en même temps sur la machine est le bash lors de la réalisation des tests.
 
     \subsubsection{Méthode utilisée pour les mesures de temps\,: } 
+      Pour mesurer le temps, nous avons choisi d'utiliser la fonction clock() de la bibliothèque {\em time.h}. Avant le lancement de la 
+      
       {\em préciser ici  comment les mesures de temps ont été effectuées (fonction appelée) et l'unité de temps; en particulier, 
        préciser comment les 5 exécutions pour chaque test ont été faites (par exemple si le même test est fait 5 fois de suite, ou si les tests sont alternés entre
        les mesures, ou exécutés en concurrence etc). 
@@ -120,16 +124,6 @@ choix effectués (notamment pour l'ordonnancement des instructions).
               les  temps mesurés correspondent ils  à votre analyse théorique (nombre d’opérations et défauts de cache) ?
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Question bonus\,: programme {\tt mystere.c}(2 points)}
-\subsection{Que fait le programme mystère et dans quel but? (1.5 point)}
-{\em Dire brièvement ce que fait le programme mystere et quel est l'impact lors de l'exécution 
-(i.e. lors de recherches avec le dictionnaire) de ce post-traitement.}
-
-\subsection{Qu'en pensez-vous? (0.5 point) } 
-{\em Répondre à l'argumentation en justifiant : soit que le programme mystere est (presque) optimal (justifier les hypothèses) ; soit qu'il n'est pas optimal en 
-justifiant comment faire encore mieux.
-}
 
 \end{document}
 %% Fin mise au format
