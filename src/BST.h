@@ -15,7 +15,7 @@
 #include <errno.h>
 #include <assert.h>
 #include <string.h>
-#include "fileReader.h"
+#include "freqReader.h"
 
 typedef struct
 {

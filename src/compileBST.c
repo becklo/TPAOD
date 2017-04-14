@@ -94,7 +94,7 @@ int main (int argc, char *argv[]) {
   double timeExec;
   clock_t tStart, tEnd;
 
-
+  tStart = clock();
   tabFreq = fTabProb(argc, argv[2]);
   BST *result;
   double tab_cout[n];
@@ -110,6 +110,9 @@ int main (int argc, char *argv[]) {
       printf("{ %d, %d}", result->tree[i][0], result->tree[i][1]);
       }
     }
+    tEnd = clock();
   printf("\n");
+  timeExec = (double) (tEnd - tStart)/CLOCKS_PER_SEC;
+  printf("temps d'execution : %lf", timeExec);
 
 }
