@@ -28,7 +28,10 @@ int nbElement;
 node *BSTConstruit(int tab_racine[nbElement][nbElement],int i,int j);
 node *CreateNode(int tab_racine[nbElement][nbElement],int i , int j ,node *Fg ,node *Fd);
 void printBST(node *Arbre);
+void initTabRacine(int tab_racine[nbElement][nbElement],int nbElement);
+void initMemo(double memoizationCout[nbElement][nbElement],int nbElement);
 void calculCoutInit(COUPLE tab[],double tab_cout[]);
-double calculCout(int i, int j,double cout[nbElement][nbElement] ,int nbElement, double tab[],double memoizationCout[nbElement][nbElement],int tab_racine[nbElement][nbElement]);
+double calculCout(int i, int j,COUPLE tab[],int nbElement, double tab_cout[],double memoizationCout[nbElement][nbElement],int tab_racine[nbElement][nbElement]);
+void calculTabRacine(int tab_racine[nbElement][nbElement],int tab_racine_cal[],int nbElement);
 
 #endif /* BST_h */
