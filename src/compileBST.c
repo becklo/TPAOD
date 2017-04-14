@@ -90,9 +90,9 @@ int main (int argc, char *argv[]) {
 
 
   double *tabFreq = NULL;
-  int i = 0;
+  /*int i = 0;
   double timeExec;
-  clock_t tStart, tEnd;
+  clock_t tStart, tEnd;*/
 
 
   tabFreq = fTabProb(argc, argv[2]);
@@ -101,7 +101,7 @@ int main (int argc, char *argv[]) {
   calculCoutInit(tabFreq,tab_cout);
   result = calculCout(tabFreq,n,tab_cout);
   printf("BSTroot %d\n", result->root);
-  printf("BSTtree : " );
+  printf("BSTtree [%ld][2]: ",n );
   for (int i = 0;i<n;i++ ){
     if(result->tree[i] == NULL ){
       break;
