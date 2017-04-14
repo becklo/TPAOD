@@ -90,10 +90,6 @@ int main (int argc, char *argv[]) {
 
 
   double *tabFreq = NULL;
-  /*int i = 0;
-  double timeExec;
-  clock_t tStart, tEnd;*/
-
 
   tabFreq = fTabProb(argc, argv[2]);
   BST *result;
