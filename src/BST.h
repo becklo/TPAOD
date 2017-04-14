@@ -17,21 +17,17 @@
 #include <string.h>
 #include "fileReader.h"
 
-typedef struct node
+typedef struct
 {
-    unsigned int val;
-    struct node *fg;
-    struct node *fd;
-} node ;
+    int root;
+    int **tree;
+} BST ;
 
 int nbElement;
-node *BSTConstruit(int tab_racine[nbElement][nbElement],int i,int j);
-node *CreateNode(int tab_racine[nbElement][nbElement],int i , int j ,node *Fg ,node *Fd);
-void printBST(node *Arbre);
-void initTabRacine(int tab_racine[nbElement][nbElement],int nbElement,COUPLE tab[]);
-void initMemo(double memoizationCout[nbElement][nbElement],int nbElement);
-void calculCoutInit(COUPLE tab[],double tab_cout[]);
-double calculCout(int i, int j,COUPLE tab[],int nbElement, double tab_cout[],double memoizationCout[nbElement][nbElement],int tab_racine[nbElement][nbElement]);
-//void calculTabRacine(int tab_racine[nbElement][nbElement],int tab_racine_cal[],int nbElement);
+void BSTConstruit(int i,int j, int racine, int nbElement, int **tab_racine,BST *cout);
+void calculCoutInit(double tab[],double tab_cout[]);
+BST *calculCout(double tab[],int nbElement, double tab_cout[]);
+
+
 
 #endif /* BST_h */

@@ -20,8 +20,6 @@
 #include "BST.h"
 #include "BST.c"
 
-
-
 /**
  * Main function
  * \brief Main function
@@ -90,16 +88,25 @@ int main (int argc, char *argv[]) {
   // TO BE COMPLETED
   fclose(freqFile);
 
-  COUPLE* tabFreq = NULL;
+  double *tabFreq = NULL;
   int i = 0;
   double timeExec;
   clock_t tStart, tEnd;
 
   tabFreq = tabSort(n, argv[2]);
-  for(i=0;i<NBEL;i++){
-    printf("el %d prob %lf\n", tabFreq[i].el, tabFreq[i].prob);
-  }
-
-
-  return 0;
+  BST *result;
+  double tab_cout[n];
+  calculCoutInit(tabFreq,tab_cout);
+  result = calculCout(tabFreq,n,tab_cout);
+  printf("BSTroot %d\n", result->root);
+  printf("BSTtree : " );
+  for (int i = 0;i<n;i++ ){
+    if(result->tree[i] == NULL ){
+      break;
+      }
+    else{
+      printf("{ %d, %d}", result->tree[i][0], result->tree[i][1]);
+      }
+    }
+  printf("\n");
 }
