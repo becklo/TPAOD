@@ -102,7 +102,6 @@ void BSTConstruit(int i,int j, int racine, int nbElement, int **tab_racine,BST *
 }
 
 void calculCoutInit(double tab[], double tab_cout[]){
-    int i;
     double sum=0;
     for(int i=0;i<nbElement;i++){
         sum += tab[i];

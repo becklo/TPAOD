@@ -82,11 +82,11 @@ int main (int argc, char *argv[]) {
     if  (codeRetour != EXIT_SUCCESS) return codeRetour ;
   }
 
-  freqFile = fopen(argv[2] , "r" );
+  /*freqFile = fopen(argv[2] , "r" );
   if (freqFile==NULL) {fprintf (stderr, "!!!!! Error opening originalFile !!!!!\n"); exit(EXIT_FAILURE);}
 
   // TO BE COMPLETED
-  fclose(freqFile);
+  fclose(freqFile);*/
 
 
   double *tabFreq = NULL;
@@ -101,7 +101,7 @@ int main (int argc, char *argv[]) {
   calculCoutInit(tabFreq,tab_cout);
   result = calculCout(tabFreq,n,tab_cout);
   printf("BSTroot %d\n", result->root);
-  printf("BSTtree : " );
+  printf("BSTtree [%ld][2]: ",n );
   for (int i = 0;i<n;i++ ){
     if(result->tree[i] == NULL ){
       break;
