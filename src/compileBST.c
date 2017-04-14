@@ -82,15 +82,17 @@ int main (int argc, char *argv[]) {
     if  (codeRetour != EXIT_SUCCESS) return codeRetour ;
   }
 
-  freqFile = fopen(argv[2] , "r" );
+  /*freqFile = fopen(argv[2] , "r" );
   if (freqFile==NULL) {fprintf (stderr, "!!!!! Error opening originalFile !!!!!\n"); exit(EXIT_FAILURE);}
 
   // TO BE COMPLETED
-  fclose(freqFile);
+  fclose(freqFile);*/
 
 
   double *tabFreq = NULL;
 
+
+  tStart = clock();
   tabFreq = fTabProb(argc, argv[2]);
   BST *result;
   double tab_cout[n];
@@ -106,6 +108,9 @@ int main (int argc, char *argv[]) {
       printf("{ %d, %d}", result->tree[i][0], result->tree[i][1]);
       }
     }
+    tEnd = clock();
   printf("\n");
+  timeExec = (double) (tEnd - tStart)/CLOCKS_PER_SEC;
+  printf("temps d'execution : %lf", timeExec);
 
 }
