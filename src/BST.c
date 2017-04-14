@@ -16,30 +16,32 @@ double tab_cout[5];
 double cout[5][5];
 
 node *BSTConstruit(int tab_racine[nbElement][nbElement],int i,int j) {
-  node *Arbre=malloc(sizeof(int));
-  if(Arbre == NULL){
-    perror("arbre non aloué");
+    node *Arbre=malloc(sizeof(node));
+    if(Arbre == NULL){
+      perror("arbre non aloué");
+    }
+    Arbre = CreateNode(tab_racine,i,j,NULL,NULL);
+    if(i<tab_racine[i][j]-1){
+      Arbre->fg=BSTConstruit(tab_racine,i,tab_racine[i][j]-1);
+    }
+    if(tab_racine[i][j]<j){
+      Arbre->fd=BSTConstruit(tab_racine,tab_racine[i][j],j);
+    }
+    return Arbre;
   }
-  Arbre = CreateNode(tab_racine,i,j,NULL,NULL);
-  if(i<tab_racine[i][j]-1){
-    Arbre->fg=BSTConstruit(tab_racine,i,tab_racine[i][j]-1);
-  }
-  if(tab_racine[i][j]<j){
-    Arbre->fd=BSTConstruit(tab_racine,tab_racine[i][j],j);
-  }
-  return Arbre;
-}
+
 
 node *CreateNode(int tab_racine[nbElement][nbElement],int i,int j,node *Fg ,node *Fd){
-  node *noeud=malloc(sizeof(int));
-  if(noeud== NULL){
-    perror("noeud non alloué");
+    node *noeud=malloc(sizeof(int));
+    if(noeud== NULL){
+      perror("noeud non alloué");
+    }
+    noeud->val = tab_racine[i][j];
+    noeud->fg= NULL;
+    noeud->fd = NULL;
+    return noeud;
   }
-  noeud->val = tab_racine[i][j];
-  noeud->fg= NULL;
-  noeud->fd = NULL;
-  return noeud;
-}
+
 
 void printBST(node *Arbre)
 {
@@ -53,7 +55,6 @@ double calculCout(int i, int j,COUPLE tab[],int nbElement, double tab_cout[],dou
     double min;
     double val;
     int k_min;
-    int racine = -1;
     if((i==0 && j==0 )|| i==j){
       return 0;
     }
@@ -90,10 +91,10 @@ void initMemo(double memoizationCout[nbElement][nbElement],int nbElement){
   }
 }
 
-void initTabRacine(int tab_racine[nbElement][nbElement],int nbElement){
+void initTabRacine(int tab_racine[nbElement][nbElement],int nbElement,COUPLE tab[]){
   for(int i=0;i<nbElement;i++){
     for(int j=0;j<nbElement;j++){
-      tab_racine[i][j]= -1;
+      tab_racine[i][j]= tab[i].el;
     }
   }
 }
@@ -107,11 +108,10 @@ void calculCoutInit(COUPLE tab[], double tab_cout[]){
     }
 }
 
-void calculTabRacine(int tab_racine[nbElement][nbElement],int tab_racine_cal[],int nbElement){
+/*void calculTabRacine(int tab_racine[nbElement][nbElement],int tab_racine_cal[],int nbElement){
   bool presence = false;
   for(int i=0;i<nbElement;i++){
     for(int j=0;j<nbElement;j++){
-      if(tab_racine[i][j]!= -1){
         presence = false;
         for(int k = 0 ; k<nbElement;k++){
           if(tab_racine_cal[k]==tab_racine[i][j]){
@@ -124,7 +124,7 @@ void calculTabRacine(int tab_racine[nbElement][nbElement],int tab_racine_cal[],i
       }
     }
   }
-}
+*/
 
 int main (int argc, char *argv[]) {
   int i = 0;
@@ -145,16 +145,15 @@ int main (int argc, char *argv[]) {
   tab[4].el = 9 ;
   tab[4].prob = 0.1;
   initMemo(memoizationCout,5);
-  initTabRacine(tab_racine,5);
+  initTabRacine(tab_racine,5,tab);
   calculCoutInit(tab,tab_cout);
   result = calculCout(0,4,tab,5,tab_cout,memoizationCout,tab_racine);
   printf("%lf\n", result);
-  calculTabRacine(tab_racine,tab_racine_cal,5);
-  for(int i=0;i<nbElement;i++){
-    /*for(int j=0;j<nbElement;j++){
+  //calculTabRacine(tab_racine,tab_racine_cal,5);
+  for(int i=0;i<5;i++){
+    for(int j=0;j<5;j++){
       printf("%d\n",tab_racine[i][j] );
-    }*/
-    printf("%d\n", tab_racine_cal[i]);
+    }
   }
   Arbre = BSTConstruit(tab_racine,0,4);
   //printBST(Arbre);
