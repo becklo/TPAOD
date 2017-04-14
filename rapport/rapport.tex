@@ -79,18 +79,14 @@ BECK Loula (groupe 1)
       Le seul processus user qui tourne en même temps sur la machine est le bash lors de la réalisation des tests.
 
     \subsubsection{Méthode utilisée pour les mesures de temps\,: } 
-      Pour mesurer le temps, nous avons choisi d'utiliser la fonction clock() de la bibliothèque {\em time.h}. Avant le lancement de la 
-      
-      {\em préciser ici  comment les mesures de temps ont été effectuées (fonction appelée) et l'unité de temps; en particulier, 
-       préciser comment les 5 exécutions pour chaque test ont été faites (par exemple si le même test est fait 5 fois de suite, ou si les tests sont alternés entre
-       les mesures, ou exécutés en concurrence etc). 
-      }
+      Pour mesurer le temps, nous avons choisi d'utiliser la fonction clock() de la bibliothèque {\em time.h}. Avant l'appel à la fonction
+      permettant la construction de l'arbre, on relève une première fois le temps processeur tStart.
+      On relève ensuite le temps juste après son execution tEnd. 
+      Le temps total d'execution est donc la différence de ces deux temps divisé par le nombre de tour d'horloge du processeur par sec CLOCK\_PER\_SEC.
+      Les 5 mesures sont éxécutées de manières consécutives pour chaque benchmark. 
 
   \subsection{Mesures expérimentales}
-    {\em Compléter le tableau suivant par les temps d'exécution mesurés pour chacun des 6 benchmarks imposés
-              (temps minimum, maximum et moyen sur 5 exécutions)
-    }
-
+    Les mesures efféctuées nous permettent de construire le tableau suivant :
     \begin{figure}[h]
       \begin{center}
         \begin{tabular}{|l||r||r|r|r||}

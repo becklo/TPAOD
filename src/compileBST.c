@@ -15,8 +15,8 @@
 #include <assert.h>
 #include <string.h>
 #include <time.h>
-#include "fileReader.h"
-#include "fileReader.c"
+#include "freqReader.h"
+#include "freqReader.c"
 #include "BST.h"
 #include "BST.c"
 
@@ -88,12 +88,14 @@ int main (int argc, char *argv[]) {
   // TO BE COMPLETED
   fclose(freqFile);
 
+
   double *tabFreq = NULL;
   int i = 0;
   double timeExec;
   clock_t tStart, tEnd;
 
-  tabFreq = tabSort(n, argv[2]);
+
+  tabFreq = fTabProb(argc, argv[2]);
   BST *result;
   double tab_cout[n];
   calculCoutInit(tabFreq,tab_cout);
@@ -109,4 +111,5 @@ int main (int argc, char *argv[]) {
       }
     }
   printf("\n");
+
 }
